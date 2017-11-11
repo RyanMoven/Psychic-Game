@@ -25,26 +25,28 @@ document.onkeyup = function() {
 
   // Input userChoice vs computerChoice below and compare results
 
---guessesLeft
-guessesTyped[userGuess]
+guessesLeft--
+
 
 if (guessesLeft === 0) {
+	losses--
 	alert("you lose");
-	return guessesLeft
-}
+	
+	}
 
 if (userGuess === computerChoice){
-	++wins
+	wins++
 	alert("you win");
+	
 	
 }	
 
-var html = 
+var html = //HTML updater
     "<p>Guess what letter I am thinking of</p>" +
 	"<p>Wins:" + wins + "</p>" +
 	"<p>Losses:" + losses + "</p>" +
 	"<p>Guesses Left:" + guessesLeft + "</p>" +
-	"<p>Your guesses so far:" + guessesTyped + "</p>";
+	"<p>Your guesses so far:" + guessesTyped.push(userGuess); + "</p>";
 
 	document.querySelector('#game').innerHTML = html;
 
@@ -52,7 +54,7 @@ var html =
 
 
 
-  //html updater
+  
 
  
 
