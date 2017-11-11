@@ -16,49 +16,53 @@ var wins = 0;
 var losses = 0;
 var guessesLeft = 9;
 var guessesTyped =[];
+var userGuess = null; // Value for UserKeystrokes
 
-document.onkeyup = function() {
+var computerChoice = userOptions[Math.floor(Math.random() *userOptions.length)];
+
+document.onkeyup = function(event) {
+
   var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
   console.log(userGuess);
-
-  var computerChoice = userOptions[Math.floor(Math.random() *userOptions.length)];
-
   // Input userChoice vs computerChoice below and compare results
 
-guessesLeft--
+if (guessesTyped.indexOf(userGuess) < 0 && userOptions.indexOf(userGuess) >= 0) {
+		guessesTyped[guessesTyped.length]=userGuess;
+
+		guessesLeft--; //Decrement every time user types a letter 
 
 
-if (guessesLeft === 0) {
-	losses--
-	alert("you lose");
-	
-	}
-
-if (userGuess === computerChoice){
-	wins++
-	alert("you win");
-	
 	
 }	
 
+if (computerChoice == userGuess) { // Basically a win
+		wins++;
+		guessesLeft = 9;
+		guessesTyped = [];
+		computerChoice = userOptions[Math.floor(Math.random() * userOptions.length)];
+
+	}
+
+
+if (guessesLeft == 0) {
+		losses++;
+		guessesLeft = 9;
+		guessesTyped = []; // resets the array and selects a new word for computer
+		computerChoice = userOptions[Math.floor(Math.random() * userOptions.length)]; 
+		
+	}
+
+
 var html = //HTML updater
-    "<p>Guess what letter I am thinking of</p>" +
-	"<p>Wins:" + wins + "</p>" +
-	"<p>Losses:" + losses + "</p>" +
-	"<p>Guesses Left:" + guessesLeft + "</p>" +
-	"<p>Your guesses so far:" + guessesTyped.push(userGuess); + "</p>";
+	  "<p><h4>Wins: " + wins + "</h4></p>" +
+	   "<p><h4>Losses: " + losses + "</h4></p>"+
+	    "<p><h4>Guesses Left: " + guessesLeft + "</h4></p>"+
+	     "<p><h4>Your guesses so far: " + guessesTyped + "</h4></p>";
+
 
 	document.querySelector('#game').innerHTML = html;
 
 
+   }
 
 
-
-  
-
- 
-
-
-
-
-}
